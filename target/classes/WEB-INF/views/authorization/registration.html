@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/authorization/registration}" th:object="${account}">
+    <p>
+        <label for="surname">Фамилия:</label>
+        <br>
+        <input type="text" th:field="*{surname}" id="surname">
+    </p>
+    <p>
+        <label for="name">Имя:</label>
+        <br>
+        <input type="text"  th:field="*{name}" id="name">
+    </p>
+    <p>
+        <label for="patronymic">Очество:</label>
+        <br>
+        <input type="text"  th:field="*{patronymic}" id="patronymic">
+    </p>
+    <p>
+        <label for="dateOfBirth">Дата рождения:</label>
+        <br>
+        <input type="date"  th:field="*{dateOfBirth}" id="dateOfBirth">
+    </p>
+    <p>
+        <label for="email">Email:</label>
+        <br>
+        <input type="text"  th:field="*{accountKey.login}" id="email">
+    </p>
+
+    <p>
+        <label for="password">Password:</label>
+        <br>
+        <input type="text"  th:field="*{accountKey.password}" id="password">
+    </p>
+
+    <input type="submit" value="Enter"/>
+</form>
+</body>
+</html>

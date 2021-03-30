@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:object="${profile}">
+
+<h1 th:text="${profile.getSurname()+' '+ profile.getName()+' '+profile.getPatronymic()}">ФИО</h1>
+<p th:text = "${profile.getDateOfBirth()}">Дата</p>
+<a href="loan">Займ</a>
+<br>
+<a href="enter">Выход</a>
+</body>
+</html>
