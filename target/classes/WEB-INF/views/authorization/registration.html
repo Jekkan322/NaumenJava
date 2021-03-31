@@ -10,33 +10,42 @@
         <label for="surname">Фамилия:</label>
         <br>
         <input type="text" th:field="*{surname}" id="surname">
+        <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Name Error</div>
     </p>
     <p>
         <label for="name">Имя:</label>
         <br>
         <input type="text"  th:field="*{name}" id="name">
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
     </p>
     <p>
         <label for="patronymic">Очество:</label>
         <br>
         <input type="text"  th:field="*{patronymic}" id="patronymic">
+        <div style="color:red" th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}">Name Error</div>
     </p>
     <p>
         <label for="dateOfBirth">Дата рождения:</label>
         <br>
         <input type="date"  th:field="*{dateOfBirth}" id="dateOfBirth">
+        <div style="color:red" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">Name Error</div>
     </p>
-    <p>
-        <label for="email">Email:</label>
-        <br>
-        <input type="text"  th:field="*{accountKey.login}" id="email">
-    </p>
+    <div th:object="${accountKey}">
+        <p>
+            <label for="email">Email:</label>
+            <br>
+            <input type="text"  th:field="*{login}" id="email">
+            <div style="color:red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Name Error</div>
+            <div style="color:red" th:text="${uniquenessOfEmail}">Email repeat</div>
+        </p>
 
-    <p>
-        <label for="password">Password:</label>
-        <br>
-        <input type="text"  th:field="*{accountKey.password}" id="password">
-    </p>
+        <p>
+            <label for="password">Password:</label>
+            <br>
+            <input type="text"  th:field="*{password}" id="password">
+            <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>
+        </p>
+    </div>
 
     <input type="submit" value="Enter"/>
 </form>

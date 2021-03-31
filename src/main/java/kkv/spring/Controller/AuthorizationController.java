@@ -1,12 +1,19 @@
 package kkv.spring.Controller;
 
-import kkv.spring.dao.AuthorizationDAO;
+import kkv.spring.DAO.AuthorizationDAO;
 import kkv.spring.models.Account;
 import kkv.spring.models.AccountKey;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/authorization")
@@ -25,7 +32,12 @@ public class AuthorizationController {
     }
 
     @GetMapping("/registration")
-    public String registration(@ModelAttribute("account")Account account){
+    public String registration(
+            @ModelAttribute("account")Account account,
+            @ModelAttribute("accountKey") AccountKey accountKey
+            ){
+
+
         return "authorization/registration";
     }
 
@@ -39,25 +51,41 @@ public class AuthorizationController {
     public String enter(@ModelAttribute("accountKey")AccountKey accountKey, Model model){
         if(authorizationDAO.hasKey(accountKey)) {
             var acc=authorizationDAO.getAccount(accountKey);
+
+            if (acc.isAdmin()) {
+                model.addAttribute("users",authorizationDAO.getUsers());
+                return "/authorization/employer";
+            }
             model.addAttribute("profile",acc);
-            return acc.isAdmin() ? "" : "/authorization/profile";
+            return "/authorization/profile";
         }
         return "redirect:/authorization";
     }
 
-    @GetMapping("loan")
+    @GetMapping("/loan")
     public String loan(){
         return "/authorization/loan";
     }
 
     /*зарегистрироваться*/
     @PostMapping("/registration")
-    public String create(@ModelAttribute("account") Account account){
-        if(authorizationDAO.hasKey(account.getAccountKey()))
-            return "redirect:/authorization/registration";
+    public String create(Model model,@ModelAttribute("account") @Valid Account account, BindingResult bindingResult,
+                         @ModelAttribute("accountKey") @Valid AccountKey accountKey, BindingResult bindingResultKey
+                         ){
+        if(bindingResult.hasErrors()||bindingResultKey.hasErrors())
+            return "/authorization/registration";
+        if(authorizationDAO.hasEmail(accountKey)) {
+            model.addAttribute("uniquenessOfEmail","Такой адресс уже используется");
+            return "/authorization/registration";
+        }
+
+        account.setAccountKey(accountKey);
+
         authorizationDAO.create(account.getAccountKey(),account);
         return "redirect:/authorization";
     }
+
+
 
 
 

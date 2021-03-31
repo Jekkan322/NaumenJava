@@ -1,11 +1,10 @@
 package kkv.spring;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Application {
@@ -28,6 +27,7 @@ public class Application {
 
         SpringApplication.run(Application.class, args);
     }
+
 
 
 

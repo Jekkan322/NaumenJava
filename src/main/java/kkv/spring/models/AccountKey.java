@@ -1,7 +1,16 @@
 package kkv.spring.models;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class AccountKey implements Comparable<AccountKey> {
+
+    @NotEmpty(message = "Email should not be empty")
+    @Email(message = "Email should be valid")
     private String login;
+
+    @Size(min = 4, max = 16, message = "Password should be between 4 and 16 characters")
     private String password;
 
     public AccountKey(String login, String password) {
@@ -10,7 +19,7 @@ public class AccountKey implements Comparable<AccountKey> {
     }
 
     public AccountKey() {
-        
+
     }
 
     public String getLogin() {

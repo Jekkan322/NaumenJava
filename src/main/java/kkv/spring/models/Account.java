@@ -1,5 +1,8 @@
 package kkv.spring.models;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,10 +13,16 @@ public class Account {
 
     private AccountKey accountKey;
 
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String name;
 
+    @NotEmpty(message = "Surname should not be empty")
+    @Size(min = 1, max = 30, message = "Surname should be between 1 and 30 characters")
     private String surname;
 
+    @NotEmpty(message = "Patronymic should not be empty")
+    @Size(min = 2, max = 30, message = "Patronymic should be between 2 and 30 characters")
     private String patronymic;
 
     private String dateOfBirth;
