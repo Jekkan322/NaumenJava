@@ -1,17 +1,31 @@
 package kkv.spring.models;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
+import javax.management.relation.Role;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
+@Entity
+@Table(name="account")
 public class Account {
 
-    private AccountKey accountKey;
+    @Id
+    @NotEmpty(message = "Email should not be empty")
+    @Email(message = "Email should be valid")
+    private String login;
+
+    @Size(min = 4, max = 16, message = "Password should be between 4 and 16 characters")
+    private String password;
+
+
 
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
@@ -27,22 +41,30 @@ public class Account {
 
     private String dateOfBirth;
 
-    private boolean isAdmin;
 
-    public boolean isAdmin() {
-        return isAdmin;
+
+    public List<Roles> getRolesSet() {
+        return rolesSet;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setRolesSet(List<Roles> rolesSet) {
+        this.rolesSet = rolesSet;
     }
 
-    public AccountKey getAccountKey() {
-        return accountKey;
+    public String getLogin() {
+        return login;
     }
 
-    public void setAccountKey(AccountKey accountKey) {
-        this.accountKey = accountKey;
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -93,7 +115,14 @@ public class Account {
         return dateOfBirth;
     }
 
+
+
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth=dateOfBirth;
     }
+
+    @ElementCollection(targetClass = Roles.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role",joinColumns = @JoinColumn(name = "login"))
+    @Enumerated(EnumType.STRING)
+    private List<Roles> rolesSet ;
 }

@@ -8,9 +8,9 @@
 
 <p th:text="${user.getSurname()}">NAME</p>
 <p th:text="${user.getName()}">ID</p>
-<p th:text="${user.getAccountKey().getLogin()}">ID</p>
+<p th:text="${user.getLogin()}">ID</p>
 <p th:text="${user.getDateOfBirth()}">ID</p>
-
+<a th:href="@{/users}">Назад</a>
 </div>
 </body>
 </html>

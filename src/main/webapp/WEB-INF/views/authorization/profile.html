@@ -8,8 +8,9 @@
 
 <h1 th:text="${profile.getSurname()+' '+ profile.getName()+' '+profile.getPatronymic()}">ФИО</h1>
 <p th:text = "${profile.getDateOfBirth()}">Дата</p>
-<a href="loan">Займ</a>
+
+<a th:href="@{/users/{login}/loan (login=${profile.getLogin()})}">Займ</a>
 <br>
-<a href="enter">Выход</a>
+<a href="/logout">Выход</a>
 </body>
 </html>

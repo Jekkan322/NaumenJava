@@ -42,9 +42,16 @@
         <p>
             <label for="password">Password:</label>
             <br>
-            <input type="text"  th:field="*{password}" id="password">
+            <input type="password"  th:field="*{password}" id="password">
             <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>
         </p>
+
+        <!--<p>
+            <label for="password">Password:</label>
+            <br>
+            <input type="password"  th:field="*{password}" id="password">
+        <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>
+        </p>-->
     </div>
 
     <input type="submit" value="Enter"/>

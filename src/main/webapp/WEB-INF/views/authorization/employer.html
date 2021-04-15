@@ -5,8 +5,11 @@
     <title>Title</title>
 </head>
 <body>
+
+<a href="/logout">Выход</a>
+<br>
 <div th:each="user : ${users}">
-    <a th:href="@{/users/{login}(login = ${user.getAccountKey().getLogin()})}" th:text="${user.getSurname()+' '+user.getName()+' '+user.getPatronymic()+' '+user.getDateOfBirth()}">user</a>
+    <a th:href="@{/users/{login}/inf(login = ${user.getLogin()})}" th:text="${user.getSurname()+' '+user.getName()+' '+user.getPatronymic()+' '+user.getDateOfBirth()}">user</a>
 </div>
 </body>
 </html>

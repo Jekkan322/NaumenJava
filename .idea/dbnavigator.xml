@@ -26,8 +26,8 @@
     <show-object-properties value="false" />
     <loaded-nodes>
       <connection connection-id="96f81f01-e834-494e-ae2a-1e0fa370259d">
-        <schema name="pg_catalog" object-types="table, function, view" />
-        <schema name="public" object-types="table, function, column, view" />
+        <schema name="pg_catalog" object-types="view, function, table" />
+        <schema name="public" object-types="column, view, function, table" />
       </connection>
     </loaded-nodes>
   </component>
@@ -44,11 +44,19 @@ insert into people(email,name_,year) values('maga228@google.com','XYESOS',1991);
 insert into people(email,name_,year) values('anton@google.com','GAY',1939);
 insert into people(email,name_,year) values('Hitler@google.com','PIDOR',1941);
 
+insert into user_role(login,roles_set) values('kefirchik.2000@mail.ru','USER');
+insert into user_role(login,roles_set) values('kefirchik.2001@mail.ru','EMPLOYEE');
+insert into user_role(login,roles_set) values('kefirchik.2222@mail.ru','EMPLOYEE');
+
 select * from people; 
 
 delete from people where id =13;
 
-select * from people;]]></console>
+select * from account;
+
+select * from user_role;
+
+select * from account where login='kefirchik.2002@mail.ru' and password ='1234,1234']]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

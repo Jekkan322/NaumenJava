@@ -5,7 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/authorization/enter}" th:object="${accountKey}">
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+    <form action="/spring_enter" method="post" >
+        <div><label> User Name : <input type="email" name="email"/> </label></div>
+        <div><label> Password: <input type="password" name="password"/> </label></div>
+        <div><input type="submit" value="Sign In"/></div>
+    </form>
+<!--<form th:method="POST" th:action="@{/authorization/enter}" th:object="${accountKey}">
     <p>
         <label for="email">Enter email:</label>
         <br>
@@ -15,10 +26,10 @@
     <p>
         <label for="password">Enter password:</label>
         <br>
-        <input type="text" th:field="*{password}" id="password">
+        <input type="password" th:field="*{password}" id="password">
     </p>
 
     <input type="submit" value="Enter"/>
-</form>
+</form>-->
 </body>
 </html>

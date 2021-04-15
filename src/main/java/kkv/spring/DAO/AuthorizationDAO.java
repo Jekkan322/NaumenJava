@@ -1,9 +1,8 @@
+/*
 package kkv.spring.DAO;
 
 import kkv.spring.models.Account;
-import kkv.spring.models.AccountKey;
-import kkv.spring.models.BankClient;
-import kkv.spring.models.BankEmployer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,13 +17,13 @@ public class AuthorizationDAO {
     @Autowired
     public AuthorizationDAO(){
         dict = new HashMap<>();
-        var a = new BankEmployer();
+
         a.setAccountKey(new AccountKey("kefirchik.2000@mail.ru","a"));
         a.setDateOfBirth("18-01-2000");
         a.setName("ADMIN");
         a.setAdmin(true);
         dict.put(a.getAccountKey().getLogin(),a);
-        var b = new BankClient();
+
         b.setAccountKey(new AccountKey("123","123"));
         b.setDateOfBirth("18-01-2000");
         b.setName("KIRILL");
@@ -66,3 +65,4 @@ public class AuthorizationDAO {
         dict.put(key.getLogin(), account);
     }
 }
+*/

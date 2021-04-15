@@ -1,10 +1,12 @@
 package kkv.spring.Controller;
 
-import kkv.spring.DAO.AuthorizationDAO;
+
 import kkv.spring.models.Account;
 import kkv.spring.models.AccountKey;
+import kkv.spring.Repository.AccountRepository;
+import kkv.spring.models.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,17 +15,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.Arrays;
 
 @Controller
 @RequestMapping("/authorization")
 public class AuthorizationController {
 
-    private AuthorizationDAO authorizationDAO;
+
+
+
+    private AccountRepository accountRepository;
 
     @Autowired
-    public AuthorizationController(AuthorizationDAO authorizationDAO){
-        this.authorizationDAO=authorizationDAO;
+    public AuthorizationController(AccountRepository accountRepository){
+        this.accountRepository=accountRepository;
     }
 
     @GetMapping()
@@ -46,17 +54,20 @@ public class AuthorizationController {
         return "authorization/enter";
     }
 
-    /*вход в кабинет*/
-    @PostMapping("/enter")
-    public String enter(@ModelAttribute("accountKey")AccountKey accountKey, Model model){
-        if(authorizationDAO.hasKey(accountKey)) {
-            var acc=authorizationDAO.getAccount(accountKey);
 
-            if (acc.isAdmin()) {
-                model.addAttribute("users",authorizationDAO.getUsers());
+    @GetMapping("/tryenter")
+    public String enter(Principal principal, Model model){
+        System.out.println("ENTER");
+        var acc = accountRepository.findByLogin(principal.getName());
+        System.out.println(principal.getName());
+        if(acc!=null) {
+            if (acc.getRolesSet().contains(Roles.EMPLOYEE)) {
+                model.addAttribute("users",accountRepository.findAll());
+                System.out.println("ADMIN");
                 return "/authorization/employer";
             }
             model.addAttribute("profile",acc);
+            System.out.println("USER");
             return "/authorization/profile";
         }
         return "redirect:/authorization";
@@ -67,6 +78,17 @@ public class AuthorizationController {
         return "/authorization/loan";
     }
 
+    @GetMapping("/createRoom")
+    public String createRoom(){
+
+        return "/authorization/room";
+    }
+
+    @GetMapping("/hello")
+    public String sayHello(){
+        return "/authorization/hello";
+    }
+
     /*зарегистрироваться*/
     @PostMapping("/registration")
     public String create(Model model,@ModelAttribute("account") @Valid Account account, BindingResult bindingResult,
@@ -74,14 +96,15 @@ public class AuthorizationController {
                          ){
         if(bindingResult.hasErrors()||bindingResultKey.hasErrors())
             return "/authorization/registration";
-        if(authorizationDAO.hasEmail(accountKey)) {
+        if(accountRepository.existsById(accountKey.getLogin())) {
             model.addAttribute("uniquenessOfEmail","Такой адресс уже используется");
             return "/authorization/registration";
         }
 
-        account.setAccountKey(accountKey);
-
-        authorizationDAO.create(account.getAccountKey(),account);
+        account.setLogin(accountKey.getLogin());
+        account.setPassword(accountKey.getPassword());
+        account.setRolesSet(Arrays.asList(Roles.USER));
+        accountRepository.save(account);
         return "redirect:/authorization";
     }
 

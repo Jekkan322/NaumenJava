@@ -5,8 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-<a href="authorization/enter">Войти</a>
-<br>
+
 <a href="authorization/registration">Зарегистрироваться</a>
+<br>
+<a href="authorization/tryenter">Войти</a>
+<br>
+<a th:href="@{authorization/createRoom}">Create room</a>
+<!--<video id="vid" autoplay></video>
+<script>
+    navigator.mediaDevices.getUserMedia({
+    video:true,audio:true
+    })
+    .then(stream=>{
+    document.getElementById("vid").srcObject = stream;
+    })
+</script>-->
 </body>
 </html>

@@ -8,7 +8,7 @@
 
 
 <div>
-    <form method="POST" th:action="@{/users/{login}/loan} (login=)" th:object="${photos}">
+    <form method="POST" th:action="@{/users/{login}/loan (login=${login})}" th:object="${photos}">
         <table>
             <tr><td>Первый разворот паспорта:</td><td><input type="file" name="file" /></td></tr>
             <tr><td>Прописка:</td><td><input type="file" name="file" /></td></tr>
@@ -18,6 +18,6 @@
 </div>
 
 
-<a href="authorization/profile">Назад</a>
+<a th:href="@{/users/{login} (login=${login})}">Назад</a>
 </body>
 </html>
