@@ -9,7 +9,9 @@
 <h1 th:text="${profile.getSurname()+' '+ profile.getName()+' '+profile.getPatronymic()}">ФИО</h1>
 <p th:text = "${profile.getDateOfBirth()}">Дата</p>
 
-<a th:href="@{/users/{login}/loan (login=${profile.getLogin()})}">Займ</a>
+<a th:href="@{/users/{login}/loan (login=${profile.getLogin()})}">Оставить заявку</a>
+<br>
+<a th:href="@{/users/{login}/requests (login=${profile.getLogin()})}">Мои заявки</a>
 <br>
 <a href="/logout">Выход</a>
 </body>

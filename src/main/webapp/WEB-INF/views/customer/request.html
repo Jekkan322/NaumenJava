@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:object="${request}">
+
+<h1 th:text="${'Запрос №'+request.getId()}">id</h1>
+<br>
+<img th:src="@{/images/{id}/{name} (id=${request.getId()},name=${request.getLocationFirstPassportSpread()})}"
+     alt="image"
+/>
+<br>
+<p>Первая страница паспорта</p>
+<br>
+<img th:src="@{/images/{id}/{name} (id=${request.getId()},name=${request.getLocationResidencePermitPassportSpread()})}"
+     alt="image"
+/>
+<br>
+<p>Страница паспорта с пропиской</p>
+<br>
+
+
+
+<div th:if="${isEmployee}" th:switch="${request.getRequestStatus()}">
+
+    <a th:href="@{/users/{login}/inf (login = ${request.getUserAccount().getLogin()})}">Отправитель</a>
+
+    <div th:case="${T(kkv.spring.models.RequestStatus).PENDING}">
+        <form th:method="POST" th:action="@{/requests/{id}/approve (id=${request.getId()})}">
+            <input type="submit" value="Принять"/>
+        </form>
+
+        <form th:method="POST" th:action="@{/requests/{id}/reject (id=${request.getId()})}">
+            <input type="submit" value="Отклонить"/>
+        </form>
+    </div>
+
+    <div th:case="${T(kkv.spring.models.RequestStatus).APPROVED}">
+        <h1>Вы одобрили заявку</h1>
+    </div>
+    <div th:case="${T(kkv.spring.models.RequestStatus).REJECTED}">
+        <h1>Вы отклонили заявку</h1>
+    </div>
+
+
+
+</div>
+<div th:if="${!isEmployee}" th:switch="${request.getRequestStatus()}">
+    <div th:case="${T(kkv.spring.models.RequestStatus).PENDING}">
+        <h1>Ваша заявка находится на рассмотрении</h1>
+        <br>
+        <form th:method="POST" th:action="@{/requests/{id}/cancel (id=${request.getId()})}" th:object="${account}">
+            <input type="submit" value="Отменить заявку"/>
+        </form>
+    </div>
+    <div th:case="${T(kkv.spring.models.RequestStatus).APPROVED}">
+        <h1>Ваша заявка одобрена</h1>
+    </div>
+    <div th:case="${T(kkv.spring.models.RequestStatus).REJECTED}">
+        <h1>Ваша заявка отклонена</h1>
+    </div>
+</div>
+<br>
+</body>
+</html>

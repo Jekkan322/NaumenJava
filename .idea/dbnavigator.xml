@@ -26,29 +26,26 @@
     <show-object-properties value="false" />
     <loaded-nodes>
       <connection connection-id="96f81f01-e834-494e-ae2a-1e0fa370259d">
-        <schema name="pg_catalog" object-types="view, function, table" />
-        <schema name="public" object-types="column, view, function, table" />
+        <schema name="pg_catalog" object-types="table, function, view" />
+        <schema name="public" object-types="table, function, column, view" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="96f81f01-e834-494e-ae2a-1e0fa370259d">
-      <console name="postgres@localhost" type="STANDARD" schema="public" session="Main"><![CDATA[create table people(
+      <console name="postgres@localhost" type="STANDARD" schema="public" session="Main"><![CDATA[create table request(
   id SERIAL PRIMARY KEY,
-  name_ varchar ,
-  email varchar ,
-  year int
+  login varchar ,
+  CONSTRAINT link FOREIGN KEY (login)
+      REFERENCES account (login)
+  
 ) 
-insert into people(email,name_,year) values('хуесос@google.com','Syka',1945);
-insert into people(email,name_,year) values('maga228@google.com','XYESOS',1991);
-insert into people(email,name_,year) values('anton@google.com','GAY',1939);
-insert into people(email,name_,year) values('Hitler@google.com','PIDOR',1941);
 
 insert into user_role(login,roles_set) values('kefirchik.2000@mail.ru','USER');
 insert into user_role(login,roles_set) values('kefirchik.2001@mail.ru','EMPLOYEE');
 insert into user_role(login,roles_set) values('kefirchik.2222@mail.ru','EMPLOYEE');
 
-select * from people; 
+select * from request; 
 
 delete from people where id =13;
 

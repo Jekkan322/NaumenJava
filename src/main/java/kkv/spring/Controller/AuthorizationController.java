@@ -4,6 +4,7 @@ package kkv.spring.Controller;
 import kkv.spring.models.Account;
 import kkv.spring.models.AccountKey;
 import kkv.spring.Repository.AccountRepository;
+
 import kkv.spring.models.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -58,25 +59,24 @@ public class AuthorizationController {
     @GetMapping("/tryenter")
     public String enter(Principal principal, Model model){
         System.out.println("ENTER");
-        var acc = accountRepository.findByLogin(principal.getName());
-        System.out.println(principal.getName());
+        var login = principal.getName();
+        var acc = accountRepository.findByLogin(login);
+        System.out.println(login);
         if(acc!=null) {
             if (acc.getRolesSet().contains(Roles.EMPLOYEE)) {
-                model.addAttribute("users",accountRepository.findAll());
-                System.out.println("ADMIN");
-                return "/authorization/employer";
+                return "redirect:/users";
             }
             model.addAttribute("profile",acc);
             System.out.println("USER");
-            return "/authorization/profile";
+            return "redirect:/users/"+acc.getLogin();
         }
         return "redirect:/authorization";
     }
 
-    @GetMapping("/loan")
-    public String loan(){
-        return "/authorization/loan";
-    }
+    /*@GetMapping("/loan")
+    public String loan( @ModelAttribute("request") Request request){
+        return "/customer/loan";
+    }*/
 
     @GetMapping("/createRoom")
     public String createRoom(){

@@ -13,6 +13,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Entity
 @Table(name="account")
 public class Account {
@@ -20,10 +22,25 @@ public class Account {
     @Id
     @NotEmpty(message = "Email should not be empty")
     @Email(message = "Email should be valid")
+    @Column(name = "login")
     private String login;
 
     @Size(min = 4, max = 16, message = "Password should be between 4 and 16 characters")
     private String password;
+
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
+
+    @OneToMany(mappedBy="userAccount")
+    private List<Request> requests;
+
+
 
 
 
@@ -124,5 +141,9 @@ public class Account {
     @ElementCollection(targetClass = Roles.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role",joinColumns = @JoinColumn(name = "login"))
     @Enumerated(EnumType.STRING)
-    private List<Roles> rolesSet ;
+    private List<Roles> rolesSet;
+
+   /* @ElementCollection(targetClass = Bid.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "bid",joinColumns = @JoinColumn(name = "login"))
+    private List<Bid> bidSet;*/
 }

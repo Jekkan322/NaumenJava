@@ -8,8 +8,14 @@
 
 <a href="/logout">Выход</a>
 <br>
+<a href="/users/pending_requests">Заявки</a>
+<br>
+<a th:href="@{/users/{login}/reviewed_requests (login=${login})}">Рассмотренные заявки</a>
+<br>
+Зарегистрированные пользователи:
+<br>
 <div th:each="user : ${users}">
-    <a th:href="@{/users/{login}/inf(login = ${user.getLogin()})}" th:text="${user.getSurname()+' '+user.getName()+' '+user.getPatronymic()+' '+user.getDateOfBirth()}">user</a>
+    <a th:href="@{/users/{login}/inf (login = ${user.getLogin()})}" th:text="${user.getSurname()+' '+user.getName()+' '+user.getPatronymic()+' '+user.getDateOfBirth()}">user</a>
 </div>
 </body>
 </html>
