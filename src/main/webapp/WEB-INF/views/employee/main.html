@@ -12,10 +12,10 @@
 <br>
 <a th:href="@{/users/{login}/reviewed_requests (login=${login})}">Рассмотренные заявки</a>
 <br>
-Зарегистрированные пользователи:
+<!--Зарегистрированные пользователи:
 <br>
 <div th:each="user : ${users}">
     <a th:href="@{/users/{login}/inf (login = ${user.getLogin()})}" th:text="${user.getSurname()+' '+user.getName()+' '+user.getPatronymic()+' '+user.getDateOfBirth()}">user</a>
-</div>
+</div>-->
 </body>
 </html>
