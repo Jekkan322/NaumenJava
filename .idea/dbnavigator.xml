@@ -49,6 +49,10 @@ insert into user_role(login,"roles_set") values('admin@mail.ru','ADMIN');
 
 insert into account(login, password,roles_set) values('admin','admin','ADMIN');
 
+
+
+insert into account(login, password,roles_set) values('admin','admin','ADMIN');
+
 select * from request; 
 
 delete from people where id =13;

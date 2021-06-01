@@ -2,6 +2,11 @@ package kkv.spring.Controller;
 
 import kkv.spring.Repository.AccountRepository;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import kkv.spring.models.Account;
+import kkv.spring.models.Roles;
+>>>>>>> Stashed changes
 =======
 import kkv.spring.models.Account;
 import kkv.spring.models.Roles;
@@ -24,9 +29,12 @@ public class MainController {
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     @GetMapping
     public String redirectToMainPage(Model model){
 =======
+=======
+>>>>>>> Stashed changes
     /*{
         if(accountRepository.findAll().stream().filter(x->!x.getRolesSet().contains(Roles.ADMIN))!=null){
             var admin = new Account("admin@mail.ru", "admin", Arrays.asList(Roles.ADMIN));
@@ -41,6 +49,9 @@ public class MainController {
     @GetMapping
     public String redirectToMainPage(){
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         return "redirect:/authorization";
     }

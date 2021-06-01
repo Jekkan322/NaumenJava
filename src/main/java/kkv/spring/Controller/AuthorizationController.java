@@ -7,7 +7,10 @@ import kkv.spring.models.Roles;
 
 import org.springframework.beans.factory.annotation.Autowired;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import org.springframework.security.crypto.password.PasswordEncoder;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import org.springframework.stereotype.Controller;
@@ -23,9 +26,12 @@ import java.security.Principal;
 public class AuthorizationController {
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     private AccountRepository accountRepository;
@@ -51,6 +57,9 @@ public class AuthorizationController {
     ){
 =======
             ){
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         return "authorization/registration";
     }
@@ -99,6 +108,9 @@ public class AuthorizationController {
         account.setPassword(newPassword);
 =======
         account.setPassword(accountKey.getPassword());
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         account.getRolesSet().add(Roles.USER);
         accountRepository.save(account);

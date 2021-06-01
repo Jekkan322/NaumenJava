@@ -15,6 +15,9 @@ public class Application {
 <<<<<<< Updated upstream
 =======
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         SpringApplication.run(Application.class, args);
     }

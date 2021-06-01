@@ -6,7 +6,10 @@ import kkv.spring.models.Roles;
 
 import org.springframework.beans.factory.annotation.Autowired;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import org.springframework.security.crypto.password.PasswordEncoder;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import javax.management.relation.Role;
+>>>>>>> Stashed changes
 =======
 import javax.management.relation.Role;
 >>>>>>> Stashed changes
@@ -29,9 +36,12 @@ public class AdminController {
 
     @Autowired
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private PasswordEncoder passwordEncoder;
 
     @Autowired
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     public AdminController(AccountRepository accountRepository){
@@ -56,7 +66,10 @@ public class AdminController {
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     /*@Secured("ADMIN")*/
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     @GetMapping("/users/roles")

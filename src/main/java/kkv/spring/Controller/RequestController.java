@@ -3,6 +3,10 @@ package kkv.spring.Controller;
 import kkv.spring.Repository.AccountRepository;
 import kkv.spring.Repository.RequestRepository;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import kkv.spring.models.RequestImages;
+>>>>>>> Stashed changes
 =======
 import kkv.spring.models.RequestImages;
 >>>>>>> Stashed changes
@@ -44,9 +48,15 @@ public class RequestController {
         var accU = req.getUserAccount();
         var newSet = accU.getRolesSet().
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 stream().
                 filter(x->x!= Roles.USER).
                 collect(Collectors.toList());
+=======
+                                    stream().
+                                    filter(x->x!= Roles.USER).
+                                    collect(Collectors.toList());
+>>>>>>> Stashed changes
 =======
                                     stream().
                                     filter(x->x!= Roles.USER).
@@ -89,7 +99,11 @@ public class RequestController {
 
     @GetMapping("/{id}")
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public String showRequestForEmployee(
+=======
+    public String showRequestForEmployee(@ModelAttribute("personPhoto") RequestImages image,
+>>>>>>> Stashed changes
 =======
     public String showRequestForEmployee(@ModelAttribute("personPhoto") RequestImages image,
 >>>>>>> Stashed changes

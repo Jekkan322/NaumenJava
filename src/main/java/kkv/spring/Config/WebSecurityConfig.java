@@ -25,6 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 .antMatchers("/authorization/room","/createRoom","/compare_photos").permitAll()
                 .antMatchers("/authorization/enter","/","/authorization","/authorization/registration").anonymous()
                 .antMatchers("/users").hasAnyRole("EMPLOYEE")
@@ -33,6 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/save_roles").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
 =======
+=======
+>>>>>>> Stashed changes
                     .antMatchers("/myCompare","/event_count","/","/authorization","/authorization/registration","/authorization/enter","/createRoom","/compare_photos").permitAll()
                     .antMatchers("/users").hasAnyRole("EMPLOYEE")
                     .antMatchers("/users/*/inf").hasAnyRole("EMPLOYEE")

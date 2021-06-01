@@ -3,12 +3,15 @@ package kkv.spring.Controller;
 import com.google.gson.Gson;
 import kkv.spring.models.Client;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 import org.apache.tomcat.util.codec.binary.StringUtils;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 =======
+=======
+>>>>>>> Stashed changes
 import kkv.spring.models.Request;
 import kkv.spring.models.RequestImages;
 
@@ -20,6 +23,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +33,11 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
+>>>>>>> Stashed changes
 =======
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
@@ -39,9 +50,12 @@ import java.util.HashMap;
 public class RoomController {
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     @GetMapping("/createRoom")
     public String createRoom(){
 =======
+=======
+>>>>>>> Stashed changes
 
 
     @RequestMapping(value="/event_count", method=RequestMethod.GET)
@@ -56,6 +70,9 @@ public class RoomController {
 
     @GetMapping("/createRoom")
     public String createRoom(@ModelAttribute("personPhoto") RequestImages image){
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         return "/authorization/room";
     }
@@ -65,7 +82,12 @@ public class RoomController {
                             @RequestParam("personPhoto") String personPhoto,
                             @RequestParam("passport") MultipartFile passportPhoto
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     ) throws IOException {
+=======
+                            ) throws IOException {
+
+>>>>>>> Stashed changes
 =======
                             ) throws IOException {
 
@@ -94,6 +116,10 @@ public class RoomController {
         req.put("second", resPersonPhoto);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -142,7 +168,12 @@ public class RoomController {
     public String comparePhotos(@RequestParam("personPhoto") String personPhoto,
                                 @RequestParam("passportPhoto") String passportPhoto,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                 Model model) throws IOException {
+=======
+                                      Model model) throws IOException {
+
+>>>>>>> Stashed changes
 =======
                                       Model model) throws IOException {
 
@@ -170,6 +201,10 @@ public class RoomController {
         req.put("second", resPersonPhoto);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -196,7 +231,10 @@ public class RoomController {
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     @PostMapping("/naumen_compare_photos")
     public void naumenComparePhotos(@ModelAttribute("personPhoto") RequestImages personPhoto,
                                 Model model,
@@ -227,6 +265,9 @@ public class RoomController {
         client.readMessage();
     }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 

@@ -8,6 +8,7 @@
 
 <h1 th:text="${profile.getSurname()+' '+ profile.getName()+' '+profile.getPatronymic()}">ФИО</h1>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <h2 th:if="${profile.getRolesSet().contains(T(kkv.spring.models.Roles).USER) &&
  !profile.getRolesSet().contains(T(kkv.spring.models.Roles).VERIFIED_USER)}" th:text="'(Ваша личность не подтверждена)'"></h2>
 <h2 th:if="${profile.getRolesSet().contains(T(kkv.spring.models.Roles).VERIFIED_USER)}" th:text="'(Ваша личность подтверждена)'"></h2>
@@ -15,6 +16,13 @@
 
 <a th:if="${profile.getRolesSet().contains(T(kkv.spring.models.Roles).USER) &&
 !profile.getRolesSet().contains(T(kkv.spring.models.Roles).VERIFIED_USER)}" th:href="@{/users/{login}/loan (login=${profile.getLogin()})}">Подтвердить личность</a>
+=======
+<h2 th:if="${profile.getRolesSet().contains(T(kkv.spring.models.Roles).USER)}" th:text="'(Ваша личность не подтверждена)'"></h2>
+<h2 th:if="${profile.getRolesSet().contains(T(kkv.spring.models.Roles).VERIFIED_USER)}" th:text="'(Ваша личность подтверждена)'"></h2>
+<p th:text = "${profile.getDateOfBirth()}">Дата</p>
+
+<a th:if="${profile.getRolesSet().contains(T(kkv.spring.models.Roles).USER)}" th:href="@{/users/{login}/loan (login=${profile.getLogin()})}">Подтвердить личность</a>
+>>>>>>> Stashed changes
 =======
 <h2 th:if="${profile.getRolesSet().contains(T(kkv.spring.models.Roles).USER)}" th:text="'(Ваша личность не подтверждена)'"></h2>
 <h2 th:if="${profile.getRolesSet().contains(T(kkv.spring.models.Roles).VERIFIED_USER)}" th:text="'(Ваша личность подтверждена)'"></h2>

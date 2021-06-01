@@ -20,8 +20,11 @@ public class ShowImageController {
     @ResponseBody
     public byte[] getImageByName(@PathVariable(value = "id") String id,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                  @PathVariable(value = "imgName") String imgName) throws IOException {
 =======
+=======
+>>>>>>> Stashed changes
                            @PathVariable(value = "imgName") String imgName) throws IOException {
 >>>>>>> Stashed changes
         System.out.println("check");
