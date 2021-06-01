@@ -5,12 +5,13 @@
     <title>Title</title>
 </head>
 <body>
+<p th:if="${logout}">Вы покинули кабинет</p>
 
 <a href="authorization/registration">Зарегистрироваться</a>
 <br>
-<a href="authorization/tryenter">Войти</a>
+<a href="authorization/identification">Войти</a>
 <br>
-<a th:href="@{authorization/createRoom}">Create room</a>
+<a th:href="@{createRoom}">Create room</a>
 <!--<video id="vid" autoplay></video>
 <script>
     navigator.mediaDevices.getUserMedia({
@@ -20,5 +21,7 @@
     document.getElementById("vid").srcObject = stream;
     })
 </script>-->
+
 </body>
+
 </html>

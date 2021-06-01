@@ -2,19 +2,21 @@ package kkv.spring.Controller;
 
 import kkv.spring.Repository.AccountRepository;
 import kkv.spring.Repository.RequestRepository;
-import kkv.spring.models.Account;
+<<<<<<< Updated upstream
+=======
+import kkv.spring.models.RequestImages;
+>>>>>>> Stashed changes
 import kkv.spring.models.RequestStatus;
-import org.dom4j.rule.Mode;
+
+import kkv.spring.models.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.security.Principal;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/requests")
@@ -37,10 +39,26 @@ public class RequestController {
                                  Model model){
         var req = requestRepository.findById(id).get();
         req.setRequestStatus(RequestStatus.APPROVED);
-        req.setEmployeeAccount(accountRepository.findByLogin(principal.getName()));
+        var accE = accountRepository.findByLogin(principal.getName());
+        req.setEmployeeAccount(accE);
+        var accU = req.getUserAccount();
+        var newSet = accU.getRolesSet().
+<<<<<<< Updated upstream
+                stream().
+                filter(x->x!= Roles.USER).
+                collect(Collectors.toList());
+=======
+                                    stream().
+                                    filter(x->x!= Roles.USER).
+                                    collect(Collectors.toList());
+>>>>>>> Stashed changes
+        newSet.add(Roles.VERIFIED_USER);
+        accU.setRolesSet(newSet);
+        accountRepository.save(accU);
         requestRepository.save(req);
-        model.addAttribute("inf","Вы приняли заявку отправителя");
-        return "customer/requestStatus";
+        model.addAttribute("inf","Вы подтвердили личность отправителя");
+        model.addAttribute("path","/users");
+        return "/main/back";
     }
 
     @PostMapping("/{id}/reject")
@@ -49,27 +67,34 @@ public class RequestController {
                                 Model model){
         var req = requestRepository.findById(id).get();
         req.setRequestStatus(RequestStatus.REJECTED);
-        req.setEmployeeAccount(accountRepository.findByLogin(principal.getName()));
+        var acc = accountRepository.findByLogin(principal.getName());
+        req.setEmployeeAccount(acc);
         requestRepository.save(req);
-        model.addAttribute("inf","Вы отклонили заявку отправителя");
-        return "customer/requestStatus";
+        model.addAttribute("inf","Вы отклонили личность отправителя");
+        model.addAttribute("path","/users");
+        return "/main/back";
     }
 
     @PostMapping("/{id}/cancel")
     public String cancelRequest(@PathVariable("id") Long id,
                                 Model model){
         var log = requestRepository.findById(id).get().getUserAccount().getLogin();
-        model.addAttribute("login",log);
+        model.addAttribute("path","/users/"+log);
         System.out.println(log);
         deleteDirectory(new File("src/main/webapp/uploads/"+id));
         model.addAttribute("inf","Ваша заявка успешно отменена");
         requestRepository.deleteById(id);
-        return "/customer/requestStatus";
+        return "/main/back";
     }
 
     @GetMapping("/{id}")
-    public String showRequestForEmployee(@PathVariable("id") Long id,
-                                Model model){
+<<<<<<< Updated upstream
+    public String showRequestForEmployee(
+=======
+    public String showRequestForEmployee(@ModelAttribute("personPhoto") RequestImages image,
+>>>>>>> Stashed changes
+                                         @PathVariable("id") Long id,
+                                         Model model){
         var log = requestRepository.findById(id).get().getUserAccount();
         model.addAttribute("login",log);
         model.addAttribute("isEmployee",true);
@@ -88,3 +113,4 @@ public class RequestController {
     }
 
 }
+

@@ -23,9 +23,5 @@ public interface RequestRepository extends CrudRepository<Request, Long> {
 
     public void deleteById(Long id);
 
-/*
-    @Query("select u from User u where u.request_status = ?1")
-    public Request findByRequestStatus(RequestStatus requestStatus);*/
-
 }
 

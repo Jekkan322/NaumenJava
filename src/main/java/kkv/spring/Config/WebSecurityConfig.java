@@ -1,8 +1,6 @@
 package kkv.spring.Config;
 
-
 import kkv.spring.Security.AuthProviderImpl;
-import kkv.spring.models.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,16 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.stereotype.Component;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -34,21 +24,44 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/","/authorization","/authorization/registration","/authorization/enter","/authorization/createRoom").permitAll()
+<<<<<<< Updated upstream
+                .antMatchers("/authorization/room","/createRoom","/compare_photos").permitAll()
+                .antMatchers("/authorization/enter","/","/authorization","/authorization/registration").anonymous()
+                .antMatchers("/users").hasAnyRole("EMPLOYEE")
+                .antMatchers("/users/*/inf").hasAnyRole("EMPLOYEE")
+                .antMatchers("/users/roles").hasAnyRole("ADMIN")
+                .antMatchers("/users/save_roles").hasAnyRole("ADMIN")
+                .anyRequest().authenticated()
+=======
+                    .antMatchers("/myCompare","/event_count","/","/authorization","/authorization/registration","/authorization/enter","/createRoom","/compare_photos").permitAll()
                     .antMatchers("/users").hasAnyRole("EMPLOYEE")
                     .antMatchers("/users/*/inf").hasAnyRole("EMPLOYEE")
+                    .antMatchers("/users/roles").hasAnyRole("ADMIN")
+                    .antMatchers("/users/save_roles").hasAnyRole("ADMIN")
                     .anyRequest().authenticated()
+>>>>>>> Stashed changes
                 .and()
-                    .csrf().disable()
-                    .formLogin()
-                    .loginPage("/authorization/enter")
-                    .loginProcessingUrl("/spring_enter")
-                    .usernameParameter("email")
-                    .permitAll()
+                .csrf().disable()
+                .formLogin()
+                .loginPage("/authorization/enter")
+                .loginProcessingUrl("/spring_enter")
+                .usernameParameter("email")
+                .permitAll()
                 .and()
+<<<<<<< Updated upstream
+                .exceptionHandling()
+                .accessDeniedPage("/exceptionHandling")
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/authorization?logout=true")
+                .permitAll();
+=======
                     .logout()
+                    .logoutSuccessUrl("/authorization")
                     .permitAll();
 
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -61,30 +74,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
-
-
-
-    /*@Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("password")
-                        .roles("USER")
-                        .build();
-
-        return new InMemoryUserDetailsManager(user);
-    }*/
-
-   /* @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select login, password, name, surname, patronymic, date_of_birth from account where login=?")
-                .authoritiesByUsernameQuery("select u.login, ur.roles from account u inner join user_role ur on u.login = ur.login where login=?");
-
-    }*/
 }

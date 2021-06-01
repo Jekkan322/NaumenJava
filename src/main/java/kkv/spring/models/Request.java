@@ -1,13 +1,25 @@
+
 package kkv.spring.models;
 
 
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="request")
 public class Request {
+
+    public String getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(String departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    private String departureDate;
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -140,3 +152,4 @@ public class Request {
     public void setId(Long id) {
         this.id = id;
     }*/
+

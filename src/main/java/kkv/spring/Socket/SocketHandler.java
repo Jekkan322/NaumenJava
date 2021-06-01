@@ -1,4 +1,4 @@
-package kkv.spring.models;
+package kkv.spring.Socket;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;

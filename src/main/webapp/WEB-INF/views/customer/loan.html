@@ -21,3 +21,29 @@
 
 </body>
 </html>
+
+<!--
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form method="POST" th:action="@{/user/loan (login=${login})}" enctype="multipart/form-data">
+        <table>
+            <tr><td>Первый разворот паспорта:</td><td><input type="file" accept="image/png,image/jpeg" name="image1" /></td></tr>
+            <tr><td>Прописка:</td><td><input type="file" accept="image/png,image/jpeg" name="image2" /></td></tr>
+            <tr><td></td><td><input type="submit" value="Оставить заявку" /></td></tr>
+        </table>
+    </form>
+</div>
+
+<a th:href="@{/user (login=${login})}">Назад</a>
+
+</body>
+</html>-->

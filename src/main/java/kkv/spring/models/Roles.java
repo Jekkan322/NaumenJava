@@ -1,6 +1,10 @@
+
 package kkv.spring.models;
 
 public enum  Roles {
     USER,
-    EMPLOYEE
+    EMPLOYEE,
+    ADMIN,
+    VERIFIED_USER
 }
+

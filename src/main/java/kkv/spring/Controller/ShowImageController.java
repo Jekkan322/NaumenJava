@@ -1,3 +1,4 @@
+
 package kkv.spring.Controller;
 
 import org.springframework.stereotype.Controller;
@@ -5,19 +6,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.imageio.ImageIO;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Base64;
 
 @Controller
 public class ShowImageController {
 
     @RequestMapping(value = "/images/{id}/{imgName}")
     @ResponseBody
-    public byte[] getImage(@PathVariable(value = "id") String id,
+    public byte[] getImageByName(@PathVariable(value = "id") String id,
+<<<<<<< Updated upstream
+                                 @PathVariable(value = "imgName") String imgName) throws IOException {
+=======
                            @PathVariable(value = "imgName") String imgName) throws IOException {
+>>>>>>> Stashed changes
         System.out.println("check");
-        File serverFile = new File(String.format("src/main/webapp/uploads/%s/%s",id,imgName));
+        var path = String.format("src/main/webapp/uploads/%s/%s",id,imgName);
+        System.out.println(path);
+        File serverFile = new File(path);
 
         return Files.readAllBytes(serverFile.toPath());
         /*createPizzaImagesDirIfNeeded();
@@ -26,5 +36,15 @@ public class ShowImageController {
 
         return Files.readAllBytes(serverFile.toPath());*/
     }
+
+    @RequestMapping(value = "/images/{resultImageName}")
+    @ResponseBody
+    public byte[] getImageByCode(@PathVariable(value = "resultImageName") String resultImageName) throws IOException {
+        System.out.println("фотки с нейронки");
+        return getImageByName("resultN",resultImageName);
+
+    }
+
+
 
 }

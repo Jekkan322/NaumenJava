@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,65 +13,168 @@
     #photo{
         height:300px;
         width:400px;
+        text-align: -webkit-center;
+        border: 2px solid;
     }
 </style>
-<!--<video id="local" autoplay></video>
-<video id="remote" autoplay></video>
 
-<script>
-    const alice = new RTCPeerConnection();
-    const bob = new RTCPeerConnection();
-
-    alice.onicecandidate = e => {
-        if(e.candidate) {
-            bob.addIceCandidate(e.candidate);
-        }
-    }
-
-    bob.onicecandidate = e => {
-        if(e.candidate) {
-            alice.addIceCandidate(e.candidate);
-        }
-    }
-
-    navigator.mediaDevices.getUserMedia({
-    video: true,audio:true
-    })
-    .then(stream=>{
-    document.getElementById("local").srcObject=stream;
-    alice.addStream(stream);
-    return alice.createOffer();
-    })
-    .then(offer => alice.setLocalDescription(new RTCSessionDescription(offer)))
-    .then(() => bob.setRemoteDescription(alice.localDescription))
-    .then(() => bob.createAnswer())
-    .then(answer => bob.setLocalDescription(new RTCSessionDescription(answer)))
-    .then(() => alice.setRemoteDescription(bob.localDescription));
-
-    bob.ontrack = e => {
-    document.getElementById("remote").srcObject = e.streams[0];
-    }
-
-</script>-->
-
-<!-- Title & header of demo aplication. -->
 <body>
+<<<<<<< Updated upstream
+<h3 id="show-peer"></h3>
+<div style="display: flex; justify-content:space-around; margin:10px; margin-bottom:30px;">
+    <p>
+    <div style="width: 400px; height:300px; border: 2px solid;" id="ourVideo">Our video</div>
+    <div style="width: 400px; height:300px; border: 2px solid;" id="remoteVideo">Remote video</div>
+    </p>
+    <br>
+    <p>
+    <div  id="photo">Client photo
+        <img id="personPhotoImg" style="width: 100%;" ></div>
+    <div  style="width: 400px; height:300px; border: 2px solid;" id="passportPhoto">
+        Client passport
+        <img src="${passport}">
+    </div>
+
+    </p>
+</div>
+<div id="result">
+    <div><img id="firstImage"></div>
+    <div><img id="secondImage"></div>
+</div>
+<br>
+<input id="peerID" placeholder="Peer ID" name="id">
+<button id="call-peer">Call Peer</button>
+<br>
+<button id="shot">Take a photo of the client</button>
+<form id="theForm" enctype="multipart/form-data">
+    <table>
+        <tr><td>Разворот паспорта с фотографией:</td><td><input type="file"  accept="image/png,image/jpeg" id="passport" name="passport" /></td></tr>
+        <!--<tr><td></td><td><input type="submit" value="Сравнить изображения" /></td></tr>-->
+        <button type="submit"  id="searchButton" name="searchButton" >
+            Сравнить изображения</button>
+    </table>
+</form>
+<!--<form id="theForm" th:object="${personPhoto}" action="/compare_photos" method="post" enctype="multipart/form-data">
+   <table>
+       <tr><td>Разворот паспорта с фотографией:</td><td><input type="file" accept="image/png,image/jpeg" id="passport" name="passport" /></td></tr>
+       <input type="text"  th:field="*{path}" id="personPhoto">
+       &lt;!&ndash;<tr><td></td><td><input type="submit" value="Сравнить изображения" /></td></tr>&ndash;&gt;
+       <button type="submit"  id="searchButton" name="searchButton" >
+           Сравнить изображения</button>
+   </table>
+</form>-->
+
+<span id="eventCount" > Пока не отправил </span>
+
+
+
+=======
     <h3 id="show-peer"></h3>
-    <div style="display: flex; justify-content:space-around; margin:10px;">
+    <div style="display: flex; justify-content:space-around; margin:10px; margin-bottom:30px;">
+        <p>
         <div style="width: 400px; height:300px; border: 2px solid;" id="ourVideo">Our video</div>
         <div style="width: 400px; height:300px; border: 2px solid;" id="remoteVideo">Remote video</div>
+        </p>
         <br>
-        <div style="width: 400px; height:300px; border: 2px solid;" id="photo">Client photo</div>
+        <p>
+        <div  id="photo">Client photo
+        <img id="personPhotoImg" style="width: 100%;" ></div>
+        <div  style="width: 400px; height:300px; border: 2px solid;" id="passportPhoto">
+            Client passport
+            <img src="${passport}">
+        </div>
+
+        </p>
     </div>
-    <input id="peerID" placeholder="Peer ID">
+    <div id="result">
+        <div><img id="firstImage"></div>
+        <div><img id="secondImage"></div>
+    </div>
+    <br>
+    <input id="peerID" placeholder="Peer ID" name="id">
     <button id="call-peer">Call Peer</button>
     <br>
     <button id="shot">Take a photo of the client</button>
+    <form id="theForm" enctype="multipart/form-data">
+        <table>
+            <tr><td>Разворот паспорта с фотографией:</td><td><input type="file"  accept="image/png,image/jpeg" id="passport" name="passport" /></td></tr>
+            <!--<tr><td></td><td><input type="submit" value="Сравнить изображения" /></td></tr>-->
+            <button type="submit"  id="searchButton" name="searchButton" >
+                Сравнить изображения</button>
+        </table>
+    </form>
+     <!--<form id="theForm" th:object="${personPhoto}" action="/compare_photos" method="post" enctype="multipart/form-data">
+        <table>
+            <tr><td>Разворот паспорта с фотографией:</td><td><input type="file" accept="image/png,image/jpeg" id="passport" name="passport" /></td></tr>
+            <input type="text"  th:field="*{path}" id="personPhoto">
+            &lt;!&ndash;<tr><td></td><td><input type="submit" value="Сравнить изображения" /></td></tr>&ndash;&gt;
+            <button type="submit"  id="searchButton" name="searchButton" >
+                Сравнить изображения</button>
+        </table>
+    </form>-->
+
+    <span id="eventCount" > Пока не отправил </span>
+
+
+    
+>>>>>>> Stashed changes
 
 </body>
 
+
 <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
+
+    var personPhoto = '';
+
+$(document).ready(function () {
+
+    $("#searchButton").click(function (event) {
+
+        //stop submit the form, we will post it manually.
+        event.preventDefault();
+
+        fire_ajax_submit();
+
+    });
+
+});
+
+function fire_ajax_submit() {
+
+    // Get form
+    var form = $('#theForm')[0];
+
+    var data = new FormData(form);
+
+    data.append("personPhoto", personPhoto);
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/myCompare",
+        data: data,
+        //http://api.jquery.com/jQuery.ajax/
+        //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+        processData: false, //prevent jQuery from automatically transforming the data into a query string
+        contentType: false,
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+
+            $("#eventCount").replaceWith(data);
+        },
+        error: function (e) {
+            $("#eventCount").replaceWith(e);
+        }
+    });
+
+}
+
+
+
     window.addEventListener('load',(event)=>{
         var peer = new Peer()
         var myStream;
@@ -101,6 +204,7 @@
 
         })
 
+
         document.getElementById("call-peer").addEventListener('click',(e)=>{
             let remotePeerId = document.getElementById("peerID").value;
             document.getElementById("show-peer").innerHTML = "connecting "+remotePeerId;
@@ -117,11 +221,17 @@
             canvas.getContext('2d')
               .drawImage(video, 0, 0, 400, 300);
 
-            const dataURL = canvas.toDataURL();
+            const dataURL = canvas.toDataURL("image/png");
+<<<<<<< Updated upstream
 
-            var img = document.createElement("img");
-            img.src = dataURL;
-            document.getElementById("photo").append(img);
+            personPhoto = dataURL;
+
+=======
+
+            personPhoto = dataURL;
+
+>>>>>>> Stashed changes
+            document.getElementById("personPhotoImg").src=dataURL;
         })
 
         function callPeer(id){
@@ -160,8 +270,58 @@
             video.play()
             document.getElementById("ourVideo").append(video);
         }
+<<<<<<< Updated upstream
+=======
+
+
     });
 </script>
-
-
 </html>
+
+<!--<video id="local" autoplay></video>
+<video id="remote" autoplay></video>
+
+<script>
+    const alice = new RTCPeerConnection();
+    const bob = new RTCPeerConnection();
+
+    alice.onicecandidate = e => {
+        if(e.candidate) {
+            bob.addIceCandidate(e.candidate);
+        }
+    }
+
+    bob.onicecandidate = e => {
+        if(e.candidate) {
+            alice.addIceCandidate(e.candidate);
+        }
+    }
+>>>>>>> Stashed changes
+
+    navigator.mediaDevices.getUserMedia({
+    video: true,audio:true
+    })
+    .then(stream=>{
+    document.getElementById("local").srcObject=stream;
+    alice.addStream(stream);
+    return alice.createOffer();
+    })
+    .then(offer => alice.setLocalDescription(new RTCSessionDescription(offer)))
+    .then(() => bob.setRemoteDescription(alice.localDescription))
+    .then(() => bob.createAnswer())
+    .then(answer => bob.setLocalDescription(new RTCSessionDescription(answer)))
+    .then(() => alice.setRemoteDescription(bob.localDescription));
+
+    bob.ontrack = e => {
+    document.getElementById("remote").srcObject = e.streams[0];
+    }
+
+</script>-->
+
+<<<<<<< Updated upstream
+    });
+</script>
+</html>
+=======
+<!-- Title & header of demo aplication. -->
+>>>>>>> Stashed changes

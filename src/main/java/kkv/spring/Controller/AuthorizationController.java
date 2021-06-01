@@ -1,33 +1,33 @@
 package kkv.spring.Controller;
 
-
 import kkv.spring.models.Account;
 import kkv.spring.models.AccountKey;
 import kkv.spring.Repository.AccountRepository;
-
 import kkv.spring.models.Roles;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
+<<<<<<< Updated upstream
+import org.springframework.security.crypto.password.PasswordEncoder;
+=======
+>>>>>>> Stashed changes
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Arrays;
 
 @Controller
 @RequestMapping("/authorization")
 public class AuthorizationController {
 
+<<<<<<< Updated upstream
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-
-
+=======
+>>>>>>> Stashed changes
     private AccountRepository accountRepository;
 
     @Autowired
@@ -36,7 +36,10 @@ public class AuthorizationController {
     }
 
     @GetMapping()
-    public String index(){
+    public String index(@RequestParam(name="logout", required = false) Boolean logout,
+                        Model model){
+        if(Boolean.TRUE.equals(logout))
+            model.addAttribute("logout",logout);
         return "authorization/index";
     }
 
@@ -44,9 +47,11 @@ public class AuthorizationController {
     public String registration(
             @ModelAttribute("account")Account account,
             @ModelAttribute("accountKey") AccountKey accountKey
+<<<<<<< Updated upstream
+    ){
+=======
             ){
-
-
+>>>>>>> Stashed changes
         return "authorization/registration";
     }
 
@@ -55,8 +60,7 @@ public class AuthorizationController {
         return "authorization/enter";
     }
 
-
-    @GetMapping("/tryenter")
+    @GetMapping("/identification")
     public String enter(Principal principal, Model model){
         System.out.println("ENTER");
         var login = principal.getName();
@@ -66,6 +70,8 @@ public class AuthorizationController {
             if (acc.getRolesSet().contains(Roles.EMPLOYEE)) {
                 return "redirect:/users";
             }
+            else if(acc.getRolesSet().contains(Roles.ADMIN))
+                return "redirect:/users/roles";
             model.addAttribute("profile",acc);
             System.out.println("USER");
             return "redirect:/users/"+acc.getLogin();
@@ -73,43 +79,31 @@ public class AuthorizationController {
         return "redirect:/authorization";
     }
 
-    /*@GetMapping("/loan")
-    public String loan( @ModelAttribute("request") Request request){
-        return "/customer/loan";
-    }*/
-
-    @GetMapping("/createRoom")
-    public String createRoom(){
-
-        return "/authorization/room";
-    }
-
-    @GetMapping("/hello")
-    public String sayHello(){
-        return "/authorization/hello";
-    }
-
-    /*зарегистрироваться*/
     @PostMapping("/registration")
     public String create(Model model,@ModelAttribute("account") @Valid Account account, BindingResult bindingResult,
                          @ModelAttribute("accountKey") @Valid AccountKey accountKey, BindingResult bindingResultKey
-                         ){
+    ){
         if(bindingResult.hasErrors()||bindingResultKey.hasErrors())
             return "/authorization/registration";
         if(accountRepository.existsById(accountKey.getLogin())) {
             model.addAttribute("uniquenessOfEmail","Такой адресс уже используется");
             return "/authorization/registration";
         }
-
         account.setLogin(accountKey.getLogin());
+<<<<<<< Updated upstream
+        var newPassword = passwordEncoder.encode(accountKey.getPassword());
+        var id = passwordEncoder.encode(account.getLogin().substring(0,5));
+        System.out.println(id);
+        System.out.println(passwordEncoder.encode("123"));
+        System.out.println(passwordEncoder.encode("123"));
+        account.setPassword(newPassword);
+=======
         account.setPassword(accountKey.getPassword());
-        account.setRolesSet(Arrays.asList(Roles.USER));
+>>>>>>> Stashed changes
+        account.getRolesSet().add(Roles.USER);
         accountRepository.save(account);
         return "redirect:/authorization";
     }
 
-
-
-
-
 }
+

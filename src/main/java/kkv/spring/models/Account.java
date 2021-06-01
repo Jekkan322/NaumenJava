@@ -1,5 +1,7 @@
+
 package kkv.spring.models;
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
@@ -17,17 +19,25 @@ import static javax.persistence.CascadeType.ALL;
 
 @Entity
 @Table(name="account")
-public class Account {
+public class Account extends SecurityProperties.User {
 
     @Id
     @NotEmpty(message = "Email should not be empty")
-    @Email(message = "Email should be valid")
     @Column(name = "login")
     private String login;
 
-    @Size(min = 4, max = 16, message = "Password should be between 4 and 16 characters")
+    @Size(min = 4, message = "Password should be more then 4 characters")
     private String password;
 
+    private String secureId;
+
+    public String getSecureId() {
+        return secureId;
+    }
+
+    public void setSecureId(String secureId) {
+        this.secureId = secureId;
+    }
 
     public List<Request> getRequests() {
         return requests;
@@ -40,27 +50,34 @@ public class Account {
     @OneToMany(mappedBy="userAccount")
     private List<Request> requests;
 
+    public Account(){}
 
-
+    public Account(String login, String password, List<Roles> roles){
+        this.login = login;
+        this.password = password;
+        this.rolesSet = roles;
+    }
 
 
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
-    private String name;
+    private String name="Иван";
 
     @NotEmpty(message = "Surname should not be empty")
     @Size(min = 1, max = 30, message = "Surname should be between 1 and 30 characters")
-    private String surname;
+    private String surname="Иванов";
 
     @NotEmpty(message = "Patronymic should not be empty")
     @Size(min = 2, max = 30, message = "Patronymic should be between 2 and 30 characters")
-    private String patronymic;
+    private String patronymic="Иванович";
 
     private String dateOfBirth;
 
 
 
     public List<Roles> getRolesSet() {
+        if(rolesSet==null)
+            rolesSet=new LinkedList<>();
         return rolesSet;
     }
 
@@ -69,6 +86,7 @@ public class Account {
     }
 
     public String getLogin() {
+
         return login;
     }
 
@@ -108,26 +126,7 @@ public class Account {
         this.patronymic = patronymic;
     }
 
-    /*public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-    *//*return dateOfBirth.getDate()+"."+(dateOfBirth.getMonth()+1)+"."+(dateOfBirth.getYear()+1900);*//*
 
-    public void setDateOfBirth(String dateOfBirth) {
-        String pattern = "dd-MM-yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        Date date=null;
-        try {
-            date = simpleDateFormat.parse(dateOfBirth);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        this.dateOfBirth.setDate(date.getDate());
-        this.dateOfBirth.setMonth(date.getMonth());
-        this.dateOfBirth.setYear(date.getYear());
-
-    }*/
     public String getDateOfBirth() {
         return dateOfBirth;
     }
@@ -143,7 +142,9 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private List<Roles> rolesSet;
 
-   /* @ElementCollection(targetClass = Bid.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "bid",joinColumns = @JoinColumn(name = "login"))
-    private List<Bid> bidSet;*/
+
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
 }

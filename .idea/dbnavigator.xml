@@ -24,12 +24,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="false" />
-    <loaded-nodes>
-      <connection connection-id="96f81f01-e834-494e-ae2a-1e0fa370259d">
-        <schema name="pg_catalog" object-types="table, function, view" />
-        <schema name="public" object-types="table, function, column, view" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="96f81f01-e834-494e-ae2a-1e0fa370259d">
@@ -43,11 +38,24 @@
 
 insert into user_role(login,roles_set) values('kefirchik.2000@mail.ru','USER');
 insert into user_role(login,roles_set) values('kefirchik.2001@mail.ru','EMPLOYEE');
-insert into user_role(login,roles_set) values('kefirchik.2222@mail.ru','EMPLOYEE');
+insert into user_role(login,password,roles_set) values('kefirchik.2222@mail.ru','EMPLOYEE');
+
+
+insert into account(login,"password") values('admin@mail.ru','admin');
+insert into user_role(login,"roles_set") values('admin@mail.ru','ADMIN');
+
+
+
+
+insert into account(login, password,roles_set) values('admin','admin','ADMIN');
 
 select * from request; 
 
 delete from people where id =13;
+
+UPDATE account
+SET login = 'admin@mail.ru'
+WHERE "login"='admin';
 
 select * from account;
 

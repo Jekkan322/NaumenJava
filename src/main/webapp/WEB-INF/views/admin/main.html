@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+<<<<<<< Updated upstream
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Title</title>
+=======
+    <meta charset="UTF-8">
+    <title>Title</title>
+>>>>>>> Stashed changes
 </head>
 <body>
-$END$
+
+<a href="/logout">Выход</a>
+<br>
+
+<form action="/users/save_roles" method="post" >
+<<<<<<< Updated upstream
+  <div><input type="submit" value="Сохранить изменения"/></div>
+
+
+  <table th:each="man : ${people}">
+    <tr>
+      <td width="150px" th:text="${man.getSurname()}"></td>
+      <td width="150px" th:text="${man.getName()}"></td>
+      <td width="150px" th:text="${man.getPatronymic()}"></td>
+      <td width="150px" th:text="${man.getLogin()}"></td>
+      <td width="150px"> <input id="present" name="present" type="checkbox" th:value="${man.getLogin()}" th:checked="*{man.getRolesSet().contains(T(kkv.spring.models.Roles).EMPLOYEE)}"></td>
+    </tr>
+  </table>
+=======
+    <div><input type="submit" value="Сохранить изменения"/></div>
+
+
+    <table th:each="man : ${people}">
+        <tr>
+            <td width="150px" th:text="${man.getSurname()}"></td>
+            <td width="150px" th:text="${man.getName()}"></td>
+            <td width="150px" th:text="${man.getPatronymic()}"></td>
+            <td width="150px" th:text="${man.getLogin()}"></td>
+            <td width="150px"> <input id="present" name="present" type="checkbox" th:value="${man.getLogin()}" th:checked="*{man.getRolesSet().contains(T(kkv.spring.models.Roles).EMPLOYEE)}"></td>
+        </tr>
+    </table>
+>>>>>>> Stashed changes
+
+</form>
+
 </body>
 </html>
+<!--th:checked="*{man.getRolesSet().contains(T(kkv.spring.models.Roles).EMPLOYEE)}"-->

@@ -48,27 +48,4 @@ public class SpringConfiguration implements WebMvcConfigurer {
         registry.viewResolver(resolver);
     }
 
-   /* @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/uploads/**").addResourceLocations("classpath:src/main/webapp/uploads/");
-    }
-*/
-
-
-    /*@Bean
-    public DataSource dataSource(){
-        var driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
-        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/first_db");
-        driverManagerDataSource.setPassword("abrakadabra77");
-        driverManagerDataSource.setUsername("postgres");
-        return driverManagerDataSource;
-    }
-
-    @Bean
-    public JdbcTemplate jdbcTemplate(){
-        return new JdbcTemplate(dataSource());
-    }*/
-
-
 }
