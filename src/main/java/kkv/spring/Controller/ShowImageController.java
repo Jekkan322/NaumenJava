@@ -19,14 +19,9 @@ public class ShowImageController {
     @RequestMapping(value = "/images/{id}/{imgName}")
     @ResponseBody
     public byte[] getImageByName(@PathVariable(value = "id") String id,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                                 @PathVariable(value = "imgName") String imgName) throws IOException {
-=======
-=======
->>>>>>> Stashed changes
+
                            @PathVariable(value = "imgName") String imgName) throws IOException {
->>>>>>> Stashed changes
+
         System.out.println("check");
         var path = String.format("src/main/webapp/uploads/%s/%s",id,imgName);
         System.out.println(path);

@@ -2,14 +2,8 @@ package kkv.spring.Controller;
 
 import kkv.spring.Repository.AccountRepository;
 import kkv.spring.Repository.RequestRepository;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
+
 import kkv.spring.models.RequestImages;
->>>>>>> Stashed changes
-=======
-import kkv.spring.models.RequestImages;
->>>>>>> Stashed changes
 import kkv.spring.models.RequestStatus;
 
 import kkv.spring.models.Roles;
@@ -47,21 +41,11 @@ public class RequestController {
         req.setEmployeeAccount(accE);
         var accU = req.getUserAccount();
         var newSet = accU.getRolesSet().
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
                 stream().
                 filter(x->x!= Roles.USER).
                 collect(Collectors.toList());
-=======
-                                    stream().
-                                    filter(x->x!= Roles.USER).
-                                    collect(Collectors.toList());
->>>>>>> Stashed changes
-=======
-                                    stream().
-                                    filter(x->x!= Roles.USER).
-                                    collect(Collectors.toList());
->>>>>>> Stashed changes
+
         newSet.add(Roles.VERIFIED_USER);
         accU.setRolesSet(newSet);
         accountRepository.save(accU);
@@ -98,22 +82,14 @@ public class RequestController {
     }
 
     @GetMapping("/{id}")
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    public String showRequestForEmployee(
-=======
     public String showRequestForEmployee(@ModelAttribute("personPhoto") RequestImages image,
->>>>>>> Stashed changes
-=======
-    public String showRequestForEmployee(@ModelAttribute("personPhoto") RequestImages image,
->>>>>>> Stashed changes
                                          @PathVariable("id") Long id,
                                          Model model){
         var log = requestRepository.findById(id).get().getUserAccount();
         model.addAttribute("login",log);
         model.addAttribute("isEmployee",true);
         model.addAttribute("request",requestRepository.findById(id).get());
-        return "/customer/request";
+        return "customer/request";
     }
 
     boolean deleteDirectory(File directoryToBeDeleted) {

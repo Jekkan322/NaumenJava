@@ -9,13 +9,9 @@ import kkv.spring.models.Request;
 import kkv.spring.models.RequestStatus;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 import org.springframework.security.access.prepost.PreAuthorize;
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -50,25 +46,16 @@ public class UserController {
         return "/customer/main";
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     @PreAuthorize("#login == authentication.name")
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     @PostMapping("/{login}/loan")
     public String createLoan(@RequestParam("image1") MultipartFile multipartFile1,
                              @RequestParam("image2") MultipartFile multipartFile2,
                              @ModelAttribute("request") Request request,
-<<<<<<< Updated upstream
+
                              @PathVariable("login") String login, Model model) throws IOException {
-=======
-            @PathVariable("login") String login, Model model) throws IOException {
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+
         if(multipartFile1==null||multipartFile2==null)
             return "redirect:/users/"+login+"/loan";
 
@@ -148,8 +135,6 @@ public class UserController {
         return "/customer/requests";
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 }
 
 

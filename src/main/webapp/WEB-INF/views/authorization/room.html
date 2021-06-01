@@ -17,10 +17,10 @@
         border: 2px solid;
     }
 </style>
-<<<<<<< Updated upstream
+
 
 <body>
-<<<<<<< Updated upstream
+
 <h3 id="show-peer"></h3>
 <div style="display: flex; justify-content:space-around; margin:10px; margin-bottom:30px;">
     <p>
@@ -69,45 +69,9 @@
 
 
 
-=======
-=======
 
-<body>
->>>>>>> Stashed changes
-    <h3 id="show-peer"></h3>
-    <div style="display: flex; justify-content:space-around; margin:10px; margin-bottom:30px;">
-        <p>
-        <div style="width: 400px; height:300px; border: 2px solid;" id="ourVideo">Our video</div>
-        <div style="width: 400px; height:300px; border: 2px solid;" id="remoteVideo">Remote video</div>
-        </p>
-        <br>
-        <p>
-        <div  id="photo">Client photo
-        <img id="personPhotoImg" style="width: 100%;" ></div>
-        <div  style="width: 400px; height:300px; border: 2px solid;" id="passportPhoto">
-            Client passport
-            <img src="${passport}">
-        </div>
 
-        </p>
-    </div>
-    <div id="result">
-        <div><img id="firstImage"></div>
-        <div><img id="secondImage"></div>
-    </div>
-    <br>
-    <input id="peerID" placeholder="Peer ID" name="id">
-    <button id="call-peer">Call Peer</button>
-    <br>
-    <button id="shot">Take a photo of the client</button>
-    <form id="theForm" enctype="multipart/form-data">
-        <table>
-            <tr><td>Разворот паспорта с фотографией:</td><td><input type="file"  accept="image/png,image/jpeg" id="passport" name="passport" /></td></tr>
-            <!--<tr><td></td><td><input type="submit" value="Сравнить изображения" /></td></tr>-->
-            <button type="submit"  id="searchButton" name="searchButton" >
-                Сравнить изображения</button>
-        </table>
-    </form>
+
      <!--<form id="theForm" th:object="${personPhoto}" action="/compare_photos" method="post" enctype="multipart/form-data">
         <table>
             <tr><td>Разворот паспорта с фотографией:</td><td><input type="file" accept="image/png,image/jpeg" id="passport" name="passport" /></td></tr>
@@ -118,14 +82,11 @@
         </table>
     </form>-->
 
-    <span id="eventCount" > Пока не отправил </span>
+
 
 
     
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 
 </body>
 
@@ -230,21 +191,13 @@ function fire_ajax_submit() {
               .drawImage(video, 0, 0, 400, 300);
 
             const dataURL = canvas.toDataURL("image/png");
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
+
+
 
             personPhoto = dataURL;
 
-=======
 
-            personPhoto = dataURL;
-
->>>>>>> Stashed changes
-=======
-
-            personPhoto = dataURL;
-
->>>>>>> Stashed changes
             document.getElementById("personPhotoImg").src=dataURL;
         })
 
@@ -284,11 +237,7 @@ function fire_ajax_submit() {
             video.play()
             document.getElementById("ourVideo").append(video);
         }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
+
 
 
     });
@@ -345,14 +294,7 @@ function fire_ajax_submit() {
 
 </script>-->
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    });
-</script>
-</html>
-=======
-<!-- Title & header of demo aplication. -->
->>>>>>> Stashed changes
-=======
-<!-- Title & header of demo aplication. -->
->>>>>>> Stashed changes
+
+
+
+

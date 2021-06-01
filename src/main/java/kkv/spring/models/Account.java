@@ -143,11 +143,5 @@ public class Account extends SecurityProperties.User {
     private List<Roles> rolesSet;
 
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }

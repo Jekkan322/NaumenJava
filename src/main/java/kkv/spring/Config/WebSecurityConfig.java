@@ -24,25 +24,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                 .antMatchers("/authorization/room","/createRoom","/compare_photos").permitAll()
                 .antMatchers("/authorization/enter","/","/authorization","/authorization/registration").anonymous()
-                .antMatchers("/users").hasAnyRole("EMPLOYEE")
-                .antMatchers("/users/*/inf").hasAnyRole("EMPLOYEE")
-                .antMatchers("/users/roles").hasAnyRole("ADMIN")
-                .antMatchers("/users/save_roles").hasAnyRole("ADMIN")
+                .antMatchers("/users","/users/*/inf").hasAnyRole("EMPLOYEE")
+                .antMatchers("/users/roles","/users/save_roles").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
-=======
-=======
->>>>>>> Stashed changes
-                    .antMatchers("/myCompare","/event_count","/","/authorization","/authorization/registration","/authorization/enter","/createRoom","/compare_photos").permitAll()
-                    .antMatchers("/users").hasAnyRole("EMPLOYEE")
-                    .antMatchers("/users/*/inf").hasAnyRole("EMPLOYEE")
-                    .antMatchers("/users/roles").hasAnyRole("ADMIN")
-                    .antMatchers("/users/save_roles").hasAnyRole("ADMIN")
-                    .anyRequest().authenticated()
->>>>>>> Stashed changes
                 .and()
                 .csrf().disable()
                 .formLogin()
@@ -51,7 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .permitAll()
                 .and()
-<<<<<<< Updated upstream
                 .exceptionHandling()
                 .accessDeniedPage("/exceptionHandling")
                 .and()
@@ -59,12 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/authorization?logout=true")
                 .permitAll();
-=======
-                    .logout()
-                    .logoutSuccessUrl("/authorization")
-                    .permitAll();
 
->>>>>>> Stashed changes
     }
 
     @Override

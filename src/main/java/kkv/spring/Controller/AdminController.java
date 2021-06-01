@@ -5,27 +5,20 @@ import kkv.spring.models.Account;
 import kkv.spring.models.Roles;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 import org.springframework.security.crypto.password.PasswordEncoder;
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
+
 import javax.management.relation.Role;
->>>>>>> Stashed changes
-=======
+
 import javax.management.relation.Role;
->>>>>>> Stashed changes
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,15 +28,9 @@ public class AdminController {
     private AccountRepository accountRepository;
 
     @Autowired
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     public AdminController(AccountRepository accountRepository){
         this.accountRepository=accountRepository;
     }
@@ -65,13 +52,9 @@ public class AdminController {
         return "/main/back";
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
     /*@Secured("ADMIN")*/
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     @GetMapping("/users/roles")
     public String changeRoles(Model model){
         model.addAttribute("people",accountRepository.findAll().stream().filter(x->!x.getRolesSet().contains(Roles.ADMIN)).toArray());
